@@ -1,5 +1,9 @@
 const { NlpManager } = require('node-nlp');
 const axios = require('axios');
+const dotenv = require('dotenv');
+
+// Load environment variables
+dotenv.config();
 
 // Initialize NLP manager
 const manager = new NlpManager({ languages: ['en'] });
@@ -35,7 +39,7 @@ manager.addAnswer('en', 'weather.tomorrow', 'Fetching tomorrow\'s weather for {{
 
 // Fetch weather from OpenWeatherMap API
 async function getWeather(city, countryCode, isTomorrow = false) {
-  const API_KEY = '91bc2f6735c2b9d7d7c7b71634686d6d'; // 🔹 Replace with your actual API key
+  const API_KEY = process.env.API_KEY; // 🔹 Replace with your actual API key
 
   try {
     // Use forecast API for tomorrow
